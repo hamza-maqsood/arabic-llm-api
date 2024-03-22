@@ -62,6 +62,9 @@ class LLMRequest(BaseModel):
 class LLMResponse(BaseModel):
     response: str
 
+@app.get("/")
+async def hello():
+    return "Marhaba Habibi"
 
 @app.post("/generate-text", response_model=LLMResponse)
 async def generate_text(graph: LLMRequest):
