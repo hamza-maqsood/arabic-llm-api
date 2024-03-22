@@ -10,9 +10,10 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Make sure python and pip commands point to python3 and pip3
-RUN ln -s /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/pip3 /usr/bin/pip
+# Ensure python and pip commands point to python3 and pip3
+# Also, upgrade pip to the latest version
+RUN if [ ! -f /usr/bin/python ]; then ln -s /usr/bin/python3 /usr/bin/python; fi && \
+    python -m pip install --upgrade pip
 
 # Copy the requirements.txt file into the container
 COPY requirements.txt /app/requirements.txt
