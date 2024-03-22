@@ -4,6 +4,16 @@ FROM nvidia/cuda:12.0.0-cudnn8-devel-ubuntu22.04
 # Set the working directory in the Docker image
 WORKDIR /app
 
+# Install Python and pip
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Make sure python and pip commands point to python3 and pip3
+RUN ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -s /usr/bin/pip3 /usr/bin/pip
+
 # Copy the requirements.txt file into the container
 COPY requirements.txt /app/requirements.txt
 
