@@ -76,7 +76,7 @@ async def app_startup():
     global device, model, tokenizer
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = AutoModelForCausalLM.from_pretrained(
-        model_path, trust_remote_code=True, device_map="auto", token="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"
+        model_path, trust_remote_code=True, device_map="auto"
     )
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     logging.info("downloading model")
