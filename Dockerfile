@@ -9,6 +9,7 @@ COPY requirements.txt /app/requirements.txt
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade bitsandbytes
 
 # Copy the rest of your application's code into the container
 COPY . /app
