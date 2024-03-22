@@ -1,5 +1,5 @@
 # Use a base image with Python and CUDA support if you're utilizing GPUs
-FROM pytorch/pytorch:1.10.0-cuda11.3-cudnn8-runtime
+FROM nvidia/cuda:12.0.0-cudnn8-devel-ubuntu22.04
 
 # Set the working directory in the Docker image
 WORKDIR /app
@@ -9,7 +9,6 @@ COPY requirements.txt /app/requirements.txt
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --upgrade bitsandbytes
 
 # Copy the rest of your application's code into the container
 COPY . /app
