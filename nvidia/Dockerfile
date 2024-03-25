@@ -11,7 +11,9 @@ RUN unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 RUN rm -f $PROTOC_ZIP
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
+RUN echo "Fuck11"
 ENV CUDA_HOME=/usr/local/cuda
+RUN echo "Fuck12"
 
 WORKDIR /app
 
