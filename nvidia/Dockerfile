@@ -39,7 +39,8 @@ WORKDIR /app/text-generation-inference
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN pip install packaging torch torchvision torchaudio
 RUN nvcc --version
-RUN CUDA_HOME=/usr/local/cuda pip install optimum auto-gptq flash-attn
+# RUN CUDA_HOME=/usr/local/cuda pip install optimum auto-gptq flash-attn
+RUN CUDA_HOME=/usr/local/cuda pip install optimum bitsandbytes flash-attn
 
 ENV HF_HUB_ENABLE_HF_TRANSFER=0
 ENV BUILD_EXTENSIONS=True
