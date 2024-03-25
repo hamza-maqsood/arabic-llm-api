@@ -34,10 +34,12 @@ WORKDIR /app
 
 RUN git clone https://github.com/saad039/text-generation-inference
 
+
 WORKDIR /app/text-generation-inference
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN pip install packaging torch torchvision torchaudio
-RUN pip install optimum auto-gptq flash-attn
+RUN nvcc --version
+RUN CUDA_HOME=/usr/local/cuda pip install optimum auto-gptq flash-attn
 
 ENV HF_HUB_ENABLE_HF_TRANSFER=0
 ENV BUILD_EXTENSIONS=True
