@@ -11,7 +11,7 @@ RUN unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 RUN rm -f $PROTOC_ZIP
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-ENV CUDA_HOME=/usr/local/cuda/bin
+ENV CUDA_HOME=/usr/local/cuda
 RUN ldconfig
 
 WORKDIR /app
