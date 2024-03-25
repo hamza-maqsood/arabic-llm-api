@@ -14,8 +14,13 @@ RUN apt-get update && apt-get install -y \
     openssl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+# Install Rust and update to the latest stable version
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && /root/.cargo/bin/rustup update \
+    && /root/.cargo/bin/rustup default stable
+
+# Validate Rust installation by showing its version
+RUN /root/.cargo/bin/rustc --version
 
 # Install Protobuf Compiler
 ENV PROTOC_ZIP=protoc-21.12-linux-x86_64.zip
@@ -34,12 +39,11 @@ WORKDIR /app
 
 RUN git clone https://github.com/saad039/text-generation-inference
 
-
 WORKDIR /app/text-generation-inference
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN pip install packaging torch torchvision torchaudio
 RUN nvcc --version
-# RUN CUDA_HOME=/usr/local/cuda pip install optimum auto-gptq flash-attn
+# Since 'auto-gptq' and 'flash-attn' were causing issues, they've been removed for now. Adjust as needed.
 RUN CUDA_HOME=/usr/local/cuda pip install optimum bitsandbytes
 
 ENV HF_HUB_ENABLE_HF_TRANSFER=0
