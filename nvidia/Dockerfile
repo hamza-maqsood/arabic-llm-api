@@ -11,6 +11,8 @@ RUN unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 RUN rm -f $PROTOC_ZIP
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
+ENV CUDA_HOME=/usr/local/cuda
+
 WORKDIR /app
 
 RUN git clone https://github.com/saad039/text-generation-inference
