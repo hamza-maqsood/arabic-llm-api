@@ -34,8 +34,8 @@ ENV MODEL_ID="brainiac-origin/jais-chat-30b-8bit"
 ENV PORT=8888
 ENV HOSTNAME=0.0.0.0
 
-#ENV QUANTIZE="gptq"
-#ENV SHARDED="false"
+ENV QUANTIZE="bitsandbytes"
+ENV SHARDED="false"
 #ENV MAX_INPUT_LENGTH="1024"
 #ENV MAX_TOTAL_TOKENS="2048"
 
