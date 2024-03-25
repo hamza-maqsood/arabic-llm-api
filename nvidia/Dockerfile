@@ -13,36 +13,36 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV CUDA_HOME=/usr/local/cuda
 
-# WORKDIR /app
+WORKDIR /app
 
-# RUN git clone https://github.com/saad039/text-generation-inference
+RUN git clone https://github.com/saad039/text-generation-inference
 
-# WORKDIR /app/text-generation-inference
-# ENV PATH="/root/.cargo/bin:${PATH}"
-# RUN pip install packaging torch torchvision torchaudio
-# RUN pip install optimum auto-gptq flash-attn
+WORKDIR /app/text-generation-inference
+ENV PATH="/root/.cargo/bin:${PATH}"
+RUN pip install packaging torch torchvision torchaudio
+RUN pip install optimum auto-gptq flash-attn
 
-# ENV HF_HUB_ENABLE_HF_TRANSFER=0
-# ENV BUILD_EXTENSIONS=True
-# RUN make install
+ENV HF_HUB_ENABLE_HF_TRANSFER=0
+ENV BUILD_EXTENSIONS=True
+RUN make install
 
-# WORKDIR /app
-# COPY entrypoint.sh .
-# RUN chmod +x entrypoint.sh
+WORKDIR /app
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-# # Set default environment variables for the model, port, and hostname
-# ENV MODEL_ID="brainiac-origin/jais-chat-30b-8bit"
-# # ENV MODEL_REVISION="gptq-4bit-128g-actorder_True"
-# ENV PORT=8888
-# ENV HOSTNAME=0.0.0.0
+# Set default environment variables for the model, port, and hostname
+ENV MODEL_ID="brainiac-origin/jais-chat-30b-8bit"
+# ENV MODEL_REVISION="gptq-4bit-128g-actorder_True"
+ENV PORT=8888
+ENV HOSTNAME=0.0.0.0
 
-# ENV QUANTIZE="bitsandbytes"
-# ENV SHARDED="false"
-# #ENV MAX_INPUT_LENGTH="1024"
-# #ENV MAX_TOTAL_TOKENS="2048"
+ENV QUANTIZE="bitsandbytes"
+ENV SHARDED="false"
+#ENV MAX_INPUT_LENGTH="1024"
+#ENV MAX_TOTAL_TOKENS="2048"
 
-# # Copy all files in models directory to /app/models. Do not copy the models directory itself.
-# # COPY model/ /root/.cache/huggingface/hub
+# Copy all files in models directory to /app/models. Do not copy the models directory itself.
+# COPY model/ /root/.cache/huggingface/hub
 
 
-# ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
