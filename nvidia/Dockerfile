@@ -17,6 +17,8 @@ RUN echo "Fuck11"
 ENV CUDA_HOME=/usr/local/cuda
 RUN echo $CUDA_HOME
 RUN echo "Fuck12"
+# RUN which nvidia-smi
+RUN which nvcc
 
 WORKDIR /app
 
