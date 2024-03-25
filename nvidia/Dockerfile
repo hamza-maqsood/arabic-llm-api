@@ -40,7 +40,7 @@ ENV SHARDED="false"
 #ENV MAX_TOTAL_TOKENS="2048"
 
 # Copy all files in models directory to /app/models. Do not copy the models directory itself.
-COPY model/ /root/.cache/huggingface/hub
+# COPY model/ /root/.cache/huggingface/hub
 
 
 ENTRYPOINT ["/app/entrypoint.sh"]
