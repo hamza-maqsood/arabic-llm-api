@@ -12,6 +12,7 @@ RUN rm -f $PROTOC_ZIP
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV CUDA_HOME=/usr/local/cuda
+RUN conda --help
 RUN ldconfig
 
 WORKDIR /app
